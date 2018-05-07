@@ -37,6 +37,15 @@ class BinarySearchTree
   end
 
   def find(value, tree_node = @root)
+    current = tree_node
+    until current.nil? || current.value == value
+      if current.value>value
+        current = current.left
+      else
+        current = current.right
+      end
+    end
+    current
   end
 
   def delete(value)
@@ -44,6 +53,11 @@ class BinarySearchTree
 
   # helper method for #delete:
   def maximum(tree_node = @root)
+    current = tree_node
+    until current.right.nil?
+      current = current.right
+    end
+    current
   end
 
   def depth(tree_node = @root)
@@ -53,6 +67,7 @@ class BinarySearchTree
   end
 
   def in_order_traversal(tree_node = @root, arr = [])
+
   end
 
 
