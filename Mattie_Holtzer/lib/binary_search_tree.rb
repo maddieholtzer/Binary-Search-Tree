@@ -61,9 +61,22 @@ class BinarySearchTree
   end
 
   def depth(tree_node = @root)
+    return 0 if is_leaf?(tree_node)
+    left = 0
+    right = 0
+    if !tree_node.left.nil?
+      left = 1 + depth(tree_node.left)
+    end
+
+    if !tree_node.right.nil?
+      right = 1 + depth(tree_node.right)
+    end
+
+    [left, right].max
   end
 
   def is_balanced?(tree_node = @root)
+
   end
 
   def in_order_traversal(tree_node = @root, arr = [])
