@@ -99,6 +99,9 @@ class BinarySearchTree
         @root = nil
       elsif last_change == "left"
         max = maximum(current.left)
+        if max.left
+          prev_node.left.left.right = max.left
+        end
         prev_node.left = max
       else
         max = maximum(current.left)

@@ -7,7 +7,6 @@ def kth_largest(tree_node, k)
   while counter < k-1
     bst.delete(bst.maximum(bst.root).value)
     counter+=1
-    print bst.maximum(bst.root).value
   end
   bst.maximum(bst.root)
 end
