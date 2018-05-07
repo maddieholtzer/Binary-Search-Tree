@@ -5,5 +5,11 @@ class BSTNode
 
   def initialize(value = nil)
     @value = value
+    @left = nil
+    @right = nil
+  end
+
+  def set_value(val)
+    @value = val
   end
 end

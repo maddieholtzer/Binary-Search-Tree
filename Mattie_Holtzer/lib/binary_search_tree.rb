@@ -6,15 +6,34 @@ require_relative 'bst_node'
 class BinarySearchTree
 
   def initialize
-    @root = BSTNode.new()
+    @root = nil
   end
 
   def insert(value)
-
+    if @root.nil?
+      @root = BSTNode.new(value)
+      return
+    end
+    current = @root
+    while true
+      if current.value>value
+        if current.left.nil?
+          current.left = BSTNode.new(value)
+          return
+        end
+        current = current.left
+      else
+        if current.right.nil?
+          current.right = BSTNode.new(value)
+          return
+        end
+        current = current.right
+      end
+    end
   end
 
   def root
-    @root.value
+    @root
   end
 
   def find(value, tree_node = @root)
@@ -39,5 +58,17 @@ class BinarySearchTree
 
   private
   # optional helper methods go here:
+
+  def is_leaf?(node)
+    !!node.left_val && !!node.right_val
+  end
+
+  def left_val(node)
+    node.left.value
+  end
+
+  def right_val(node)
+    node.right.value
+  end
 
 end
