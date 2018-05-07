@@ -68,6 +68,24 @@ class BinarySearchTree
 
   def in_order_traversal(tree_node = @root, arr = [])
 
+    print tree_node.value
+
+    return [] if tree_node.value.nil?
+    return [tree_node.value] if is_leaf?(tree_node)
+
+    left = []
+    right = []
+
+    if !tree_node.left.nil?
+      left = in_order_traversal(tree_node.left)
+    end
+
+    if !tree_node.right.nil?
+      right = in_order_traversal(tree_node.right)
+    end
+
+    left + [tree_node.value] + right
+
   end
 
 
@@ -75,7 +93,7 @@ class BinarySearchTree
   # optional helper methods go here:
 
   def is_leaf?(node)
-    !!node.left_val && !!node.right_val
+    !node.left && !node.right
   end
 
   def left_val(node)
