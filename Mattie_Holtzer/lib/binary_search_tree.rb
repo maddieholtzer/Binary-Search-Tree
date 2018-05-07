@@ -49,6 +49,29 @@ class BinarySearchTree
   end
 
   def delete(value)
+    current = @root
+    prev_node = current
+    last_change = ""
+    until current.nil? || current.value == value
+      if current.value>value
+        prev_node = current
+        current = current.left
+        last_change = "left"
+      elsif current.value<value
+        prev_node = current
+        current = current.right
+        last_change = "right"
+      end
+    end
+    if is_leaf?(current)
+      if current == @root
+        @root = nil
+      elsif last_change == "left"
+        prev_node.left = nil
+      else
+        prev_node.right = nil
+      end
+    end
   end
 
   # helper method for #delete:
@@ -76,12 +99,25 @@ class BinarySearchTree
   end
 
   def is_balanced?(tree_node = @root)
-
+    return true if is_leaf?(tree_node)
+    left = tree_node.left
+    right = tree_node.right
+    if left
+      print ' in left '
+      return false if !left
+      print ' for realleft '
+      return false if !is_balanced?(left)
+    end
+    if right
+      print ' inright '
+      return false if !right
+      print ' for realright '
+      return false if !is_balanced?(right)
+    end
+    true
   end
 
   def in_order_traversal(tree_node = @root, arr = [])
-
-    print tree_node.value
 
     return [] if tree_node.value.nil?
     return [tree_node.value] if is_leaf?(tree_node)
