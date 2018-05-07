@@ -71,6 +71,29 @@ class BinarySearchTree
       else
         prev_node.right = nil
       end
+    elsif (current.left && !current.right) || (!current.left && current.right)
+      left = current.left
+      right = current.right
+      if current == @root
+        @root = nil
+        if !!left
+          @root = left
+        else
+          @root = right
+        end
+      elsif last_change == "left"
+        if !!left
+          prev_node.left = left
+        else
+          prev_node.left = right
+        end
+      else
+        if !!left
+          prev_node.right = left
+        else
+          prev_node.right = right
+        end
+      end
     end
   end
 
