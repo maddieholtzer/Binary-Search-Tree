@@ -162,6 +162,42 @@ class BinarySearchTree
 
   end
 
+  def post_order_traversal
+    return [] if tree_node.value.nil?
+    return [tree_node.value] if is_leaf?(tree_node)
+
+    left = []
+    right = []
+
+    if !tree_node.left.nil?
+      left = in_order_traversal(tree_node.left)
+    end
+
+    if !tree_node.right.nil?
+      right = in_order_traversal(tree_node.right)
+    end
+
+    left + right + [tree_node.value]
+  end
+
+  def pre_order_traversal
+    return [] if tree_node.value.nil?
+    return [tree_node.value] if is_leaf?(tree_node)
+
+    left = []
+    right = []
+
+    if !tree_node.left.nil?
+      left = in_order_traversal(tree_node.left)
+    end
+
+    if !tree_node.right.nil?
+      right = in_order_traversal(tree_node.right)
+    end
+
+    [tree_node.value] + left + right
+  end
+
 
   private
   # optional helper methods go here:
