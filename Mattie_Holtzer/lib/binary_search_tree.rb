@@ -5,8 +5,8 @@ require_relative 'bst_node'
 
 class BinarySearchTree
 
-  def initialize
-    @root = nil
+  def initialize(root = nil)
+    @root = root
   end
 
   def insert(value)
@@ -98,9 +98,11 @@ class BinarySearchTree
       if current == @root
         @root = nil
       elsif last_change == "left"
-        prev_node.left = maximum(current.left)
+        max = maximum(current.left)
+        prev_node.left = max
       else
-        prev_node.right = maximum(current.left)
+        max = maximum(current.left)
+        prev_node.right = max
       end
     end
   end
